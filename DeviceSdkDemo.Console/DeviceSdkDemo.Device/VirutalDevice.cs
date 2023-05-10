@@ -1,5 +1,7 @@
 ﻿using Microsoft.Azure.Devices.Client;
+using Microsoft.Azure.Devices.Shared;
 using Newtonsoft.Json;
+using System.ComponentModel.Design;
 using System.Net.Mime;
 using System.Text;
 
@@ -92,13 +94,41 @@ namespace DeviceSdkDemo.Device
         }
 
         #endregion
+        #region Device Twin
 
+        public async Task UpdateTwinAsync()
+        {
+            var twin = await deviceClient.GetTwinAsync();
+
+            Console.WriteLine($"\n Initial twin value received: \n{JsonConvert.SerializeObject(twin, Formatting.Indented)}");
+            Console.WriteLine();
+
+            var reportedProperties = new TwinCollection();
+            reportedProperties["DateTimeLastAppLaunch"] = DateTime.Now;
+
+            await deviceClient.UpdateReportedPropertiesAsync(reportedProperties);
+        
+        }
+
+        private async Task OnDesiredPropertyChanged(TwinCollection desiredProperties, object _)
+        {
+            Console.WriteLine($"\tDesired property change\n\t {JsonConvert.SerializeObject(desiredProperties)}");
+            Console.WriteLine("\tSending current time as repreted property");
+            TwinCollection reportedProperties = new TwinCollection();
+            reportedProperties["DateTimeLastDesiredPropertyChangeReceived"] = DateTime.Now;
+
+            await deviceClient.UpdateReportedPropertiesAsync(reportedProperties);
+        }
+
+        #endregion
         public async Task InitializeHandlers()
         {
             await deviceClient.SetReceiveMessageHandlerAsync(OnC2MessageReceivedAsync, deviceClient);
 
             await deviceClient.SetMethodDefaultHandlerAsync(DefaultServiceHandler, deviceClient);
             await deviceClient.SetMethodHandlerAsync("SendMessages", SendMessagesHandler, deviceClient);
+
+            await deviceClient.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertyChanged, deviceClient);
 
         }
 

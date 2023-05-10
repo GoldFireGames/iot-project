@@ -8,7 +8,7 @@ await deviceClient.OpenAsync();
 var device = new VirutalDevice(deviceClient);
 Console.WriteLine("Connection success");
 await device.InitializeHandlers();
-
+await device.UpdateTwinAsync();
 
 await device.SendMessages(10, 1000);
 
