@@ -1,0 +1,12 @@
+C:\Users\jakub\Desktop\IotProject\DeviceSdkDemo.Console\DeviceSdkDemo.Device\bin\Debug\net6.0\DeviceSdkDemo.Device.deps.json
+C:\Users\jakub\Desktop\IotProject\DeviceSdkDemo.Console\DeviceSdkDemo.Device\bin\Debug\net6.0\DeviceSdkDemo.Device.dll
+C:\Users\jakub\Desktop\IotProject\DeviceSdkDemo.Console\DeviceSdkDemo.Device\bin\Debug\net6.0\DeviceSdkDemo.Device.pdb
+C:\Users\jakub\Desktop\IotProject\DeviceSdkDemo.Console\DeviceSdkDemo.Device\obj\Debug\net6.0\DeviceSdkDemo.Device.csproj.AssemblyReference.cache
+C:\Users\jakub\Desktop\IotProject\DeviceSdkDemo.Console\DeviceSdkDemo.Device\obj\Debug\net6.0\DeviceSdkDemo.Device.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jakub\Desktop\IotProject\DeviceSdkDemo.Console\DeviceSdkDemo.Device\obj\Debug\net6.0\DeviceSdkDemo.Device.AssemblyInfoInputs.cache
+C:\Users\jakub\Desktop\IotProject\DeviceSdkDemo.Console\DeviceSdkDemo.Device\obj\Debug\net6.0\DeviceSdkDemo.Device.AssemblyInfo.cs
+C:\Users\jakub\Desktop\IotProject\DeviceSdkDemo.Console\DeviceSdkDemo.Device\obj\Debug\net6.0\DeviceSdkDemo.Device.csproj.CoreCompileInputs.cache
+C:\Users\jakub\Desktop\IotProject\DeviceSdkDemo.Console\DeviceSdkDemo.Device\obj\Debug\net6.0\DeviceSdkDemo.Device.dll
+C:\Users\jakub\Desktop\IotProject\DeviceSdkDemo.Console\DeviceSdkDemo.Device\obj\Debug\net6.0\refint\DeviceSdkDemo.Device.dll
+C:\Users\jakub\Desktop\IotProject\DeviceSdkDemo.Console\DeviceSdkDemo.Device\obj\Debug\net6.0\DeviceSdkDemo.Device.pdb
+C:\Users\jakub\Desktop\IotProject\DeviceSdkDemo.Console\DeviceSdkDemo.Device\obj\Debug\net6.0\ref\DeviceSdkDemo.Device.dll

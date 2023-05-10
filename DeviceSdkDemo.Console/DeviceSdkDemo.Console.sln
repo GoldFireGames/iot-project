@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceSdkDemo.Console", "DeviceSdkDemo.Console\DeviceSdkDemo.Console.csproj", "{97087C1C-CFA1-4C2C-852D-A6A3313254BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceSdkDemo.Device", "DeviceSdkDemo.Device\DeviceSdkDemo.Device.csproj", "{9A4BC54B-8418-44FC-BEF9-C6A01FEA0C33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{97087C1C-CFA1-4C2C-852D-A6A3313254BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97087C1C-CFA1-4C2C-852D-A6A3313254BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97087C1C-CFA1-4C2C-852D-A6A3313254BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A4BC54B-8418-44FC-BEF9-C6A01FEA0C33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A4BC54B-8418-44FC-BEF9-C6A01FEA0C33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A4BC54B-8418-44FC-BEF9-C6A01FEA0C33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A4BC54B-8418-44FC-BEF9-C6A01FEA0C33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
