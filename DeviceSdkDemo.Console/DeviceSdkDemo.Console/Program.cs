@@ -7,8 +7,10 @@ using var deviceClient = DeviceClient.CreateFromConnectionString(deviceConnectio
 await deviceClient.OpenAsync();
 var device = new VirutalDevice(deviceClient);
 Console.WriteLine("Connection success");
+await device.InitializeHandlers();
+
 
 await device.SendMessages(10, 1000);
-Console.WriteLine("Finished! Press key to close...");
 
+Console.WriteLine("Finished! Press key to close...");
 Console.ReadLine();
