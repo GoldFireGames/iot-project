@@ -1,0 +1,12 @@
+C:\Users\jakub\Desktop\IotProject\ServiceSdkDemo.Console\ServiceSdkDemo.Lib\bin\Debug\net6.0\ServiceSdkDemo.Lib.deps.json
+C:\Users\jakub\Desktop\IotProject\ServiceSdkDemo.Console\ServiceSdkDemo.Lib\bin\Debug\net6.0\ServiceSdkDemo.Lib.dll
+C:\Users\jakub\Desktop\IotProject\ServiceSdkDemo.Console\ServiceSdkDemo.Lib\bin\Debug\net6.0\ServiceSdkDemo.Lib.pdb
+C:\Users\jakub\Desktop\IotProject\ServiceSdkDemo.Console\ServiceSdkDemo.Lib\obj\Debug\net6.0\ServiceSdkDemo.Lib.csproj.AssemblyReference.cache
+C:\Users\jakub\Desktop\IotProject\ServiceSdkDemo.Console\ServiceSdkDemo.Lib\obj\Debug\net6.0\ServiceSdkDemo.Lib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jakub\Desktop\IotProject\ServiceSdkDemo.Console\ServiceSdkDemo.Lib\obj\Debug\net6.0\ServiceSdkDemo.Lib.AssemblyInfoInputs.cache
+C:\Users\jakub\Desktop\IotProject\ServiceSdkDemo.Console\ServiceSdkDemo.Lib\obj\Debug\net6.0\ServiceSdkDemo.Lib.AssemblyInfo.cs
+C:\Users\jakub\Desktop\IotProject\ServiceSdkDemo.Console\ServiceSdkDemo.Lib\obj\Debug\net6.0\ServiceSdkDemo.Lib.csproj.CoreCompileInputs.cache
+C:\Users\jakub\Desktop\IotProject\ServiceSdkDemo.Console\ServiceSdkDemo.Lib\obj\Debug\net6.0\ServiceSdkDemo.Lib.dll
+C:\Users\jakub\Desktop\IotProject\ServiceSdkDemo.Console\ServiceSdkDemo.Lib\obj\Debug\net6.0\refint\ServiceSdkDemo.Lib.dll
+C:\Users\jakub\Desktop\IotProject\ServiceSdkDemo.Console\ServiceSdkDemo.Lib\obj\Debug\net6.0\ServiceSdkDemo.Lib.pdb
+C:\Users\jakub\Desktop\IotProject\ServiceSdkDemo.Console\ServiceSdkDemo.Lib\obj\Debug\net6.0\ref\ServiceSdkDemo.Lib.dll
