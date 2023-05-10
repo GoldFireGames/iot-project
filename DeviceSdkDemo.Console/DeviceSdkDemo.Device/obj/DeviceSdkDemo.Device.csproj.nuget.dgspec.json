@@ -13,8 +13,12 @@
         "packagesPath": "C:\\Users\\jakub\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\jakub\\Desktop\\IotProject\\DeviceSdkDemo.Console\\DeviceSdkDemo.Device\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\jakub\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,6 +47,10 @@
             "Microsoft.Azure.Devices.Client": {
               "target": "Package",
               "version": "[1.42.0, )"
+            },
+            "Opc.UaFx.Client": {
+              "target": "Package",
+              "version": "[2.30.0, )"
             }
           },
           "imports": [

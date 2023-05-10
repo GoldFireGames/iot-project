@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "lVZinu1I5dKvHvoWj+ECdbNW1+l8ayEcJgxkOeWXW0qzM33e21/bR+Xhx7wt5AMUF0O6H2WnP2NLk4CrbnNyWA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jakub\\Desktop\\IotProject\\ServiceBusDemo\\ServiceBusDemo.Receiver\\ServiceBusDemo.Receiver.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jakub\\.nuget\\packages\\azure.core\\1.30.0\\azure.core.1.30.0.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\azure.core.amqp\\1.3.0\\azure.core.amqp.1.3.0.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\azure.messaging.servicebus\\7.13.1\\azure.messaging.servicebus.7.13.1.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\microsoft.azure.amqp\\2.6.1\\microsoft.azure.amqp.2.6.1.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.6.0\\system.diagnostics.diagnosticsource.4.6.0.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\system.memory.data\\1.0.2\\system.memory.data.1.0.2.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\system.text.encodings.web\\4.7.2\\system.text.encodings.web.4.7.2.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+  ],
+  "logs": []
+}

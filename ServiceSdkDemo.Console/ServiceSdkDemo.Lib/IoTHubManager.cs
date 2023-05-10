@@ -39,6 +39,6 @@ namespace ServiceSdkDemo.Lib
             twin.Properties.Desired[propertyName] = propertyValue;
             await registry.UpdateTwinAsync(twin.DeviceId, twin, twin.ETag);
         }
-
+        
     }
 }

@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 using System.ComponentModel.Design;
 using System.Net.Mime;
 using System.Text;
+using Opc.UaFx;
+using Opc.UaFx.Client;
 
 namespace DeviceSdkDemo.Device
 {
@@ -19,17 +21,17 @@ namespace DeviceSdkDemo.Device
         #region Sending Messages
         public async Task SendMessages(int nrOfMessages, int delay)
         {
-            var rnd = new Random();
+            var client = new OpcClient("opc.tcp://localhost:4840/");
+            client.Connect();
 
-            Console.WriteLine($"Device sending {nrOfMessages} messages to IotHub...\n");
-
-            for(int i=0; i < nrOfMessages; i++) 
-            {
                 var data = new
                 {
-                    temperature = rnd.Next(20, 35),
-                    humidity = rnd.Next(60, 80),
-                    msgCount = i,
+                    // podstawowe wysylanie wiadomosci            
+                    ProductionStatus = client.ReadNode("ns=2;s=Device 1/ProductionStatus").Value,
+                    WorkorderId = client.ReadNode("ns=2;s=Device 1/WorkorderId").Value,
+                    Temperature = client.ReadNode("ns=2;s=Device 1/Temperature").Value,
+                    GoodCount = client.ReadNode("ns=2;s=Device 1/GoodCount").Value,
+                    BadCount = client.ReadNode("ns=2;s=Device 1/BadCount").Value,
                 };
                 
                 var dataString = JsonConvert.SerializeObject(data);
@@ -37,15 +39,13 @@ namespace DeviceSdkDemo.Device
                 Message eventMessage = new Message(Encoding.UTF8.GetBytes(dataString));
                 eventMessage.ContentType = MediaTypeNames.Application.Json;
                 eventMessage.ContentEncoding = "utf-8";
-                eventMessage.Properties.Add("temperatureAlert", (data.temperature > 30) ? "true" : "false");
-                Console.WriteLine($"\t{DateTime.Now.ToLocalTime()}> Sending message: {i}, Data: [{dataString}]");
+                Console.WriteLine($"\t{DateTime.Now.ToLocalTime()}> Data: [{dataString}]");
 
                 await deviceClient.SendEventAsync(eventMessage);
 
-                if(i < nrOfMessages - 1)
-                    await Task.Delay(delay);
-                
-            }
+               
+            
+            client.Disconnect();
             Console.WriteLine();
         }
         #endregion

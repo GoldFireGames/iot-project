@@ -1,0 +1,5 @@
+C:\Users\jakub\Desktop\IotProject\ServiceBusDemo\ServiceBusDemo.Receiver\obj\Debug\net6.0\ServiceBusDemo.Receiver.csproj.AssemblyReference.cache
+C:\Users\jakub\Desktop\IotProject\ServiceBusDemo\ServiceBusDemo.Receiver\obj\Debug\net6.0\ServiceBusDemo.Receiver.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jakub\Desktop\IotProject\ServiceBusDemo\ServiceBusDemo.Receiver\obj\Debug\net6.0\ServiceBusDemo.Receiver.AssemblyInfoInputs.cache
+C:\Users\jakub\Desktop\IotProject\ServiceBusDemo\ServiceBusDemo.Receiver\obj\Debug\net6.0\ServiceBusDemo.Receiver.AssemblyInfo.cs
+C:\Users\jakub\Desktop\IotProject\ServiceBusDemo\ServiceBusDemo.Receiver\obj\Debug\net6.0\ServiceBusDemo.Receiver.csproj.CoreCompileInputs.cache
