@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Azure.Devices.Common.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,33 @@ namespace ServiceSdkDemo.Console
                         string deviceId = System.Console.ReadLine() ?? string.Empty;
 
                         await manager.SendMessage(messageText, deviceId);
+                    }
+                    break;
+                case 2:
+                    {
+                        System.Console.WriteLine("\nType your device Id (confirm with Enter):");
+                        string deviceId = System.Console.ReadLine() ?? string.Empty;
+                        try
+                        {
+                            var result = await manager.ExecuteDeviceMethod("SendMessages", deviceId);
+                            System.Console.WriteLine($"Method executed with static {result}");
+                        }
+                        catch(DeviceNotFoundException)
+                        {
+                            System.Console.WriteLine("Device not connected!");
+                        }
+                    }
+                    break;
+                case 3:
+                    {
+                        System.Console.WriteLine("\nType your device Id (confirm with Enter):");
+                        string deviceId = System.Console.ReadLine() ?? string.Empty;
+
+                        System.Console.WriteLine("\nType property name (confirm with Enter):");
+                        string propertyName = System.Console.ReadLine() ?? string.Empty;
+
+                        var random = new Random();
+                        await manager.UpdateDesiredTwin(deviceId, propertyName,random.Next());
                     }
                     break;
                 default:
