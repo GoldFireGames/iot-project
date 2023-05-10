@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EZfaal+GDqj5mQM3yHJuqNADNQbntrkkmDEZmZk5ltSIgjRQlSr5kcc54FK6Nf+6Wlz13cHadHcKD7zQ1yHypA==",
+  "dgSpecHash": "yMbnPZ0lg4+uPvwmKFZNepjhVKYUT9Pe0efDLDnp1AEr1+l8srmn+pUK7nJ4mrZpN54rYmZ7XGKSz28pDyCAOw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jakub\\Desktop\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+  "projectFilePath": "C:\\Users\\jakub\\Desktop\\IotProject\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jakub\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\jakub\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
