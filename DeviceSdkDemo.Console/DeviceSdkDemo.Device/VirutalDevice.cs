@@ -90,6 +90,7 @@ namespace DeviceSdkDemo.Device
             receivedMessage.Dispose();
         }
 
+        /// device twin
         private async Task UpdateTwinData(int ProductionRate, int DeviceError)
         {
             string DeviceErrorString = "";
