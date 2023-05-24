@@ -6,47 +6,77 @@ using System.Net.Mime;
 using System.Text;
 using Opc.UaFx;
 using Opc.UaFx.Client;
+using System.Threading.Tasks;
 
 namespace DeviceSdkDemo.Device
 {
     public class VirutalDevice
     {
         private readonly DeviceClient deviceClient;
+        string OPCstring = File.ReadAllText(@"ConnectionOpcUa.txt");
+        string DeviceName = File.ReadAllText(@"DeviceName.txt");
 
         public VirutalDevice(DeviceClient DeviceClient)
         {
             deviceClient = DeviceClient;
         }
 
+
+        public async Task TimerSendingMessages()
+        {
+            var client = new OpcClient(OPCstring);
+            client.Connect();
+
+            var ProductionStatus = new OpcReadNode($"ns=2;s={DeviceName}/ProductionStatus");
+            int RetValues = client.ReadNode(ProductionStatus).As<int>();
+            var DeviceError = new OpcReadNode($"ns=2;s={DeviceName}/DeviceError");
+            int DeviceErrorNode = client.ReadNode(DeviceError).As<int>();
+
+            client.Disconnect();
+            if (RetValues == 1)
+            {
+                await SendMessages(1, 1);
+            }
+            else
+            {
+                Console.WriteLine("Device Offline");
+            }
+        }
+
         #region Sending Messages
         public async Task SendMessages(int nrOfMessages, int delay)
         {
-            var client = new OpcClient("opc.tcp://localhost:4840/");
+            var client = new OpcClient(OPCstring);
             client.Connect();
 
-                var data = new
-                {
-                    // podstawowe wysylanie wiadomosci            
-                    ProductionStatus = client.ReadNode("ns=2;s=Device 1/ProductionStatus").Value,
-                    WorkorderId = client.ReadNode("ns=2;s=Device 1/WorkorderId").Value,
-                    Temperature = client.ReadNode("ns=2;s=Device 1/Temperature").Value,
-                    GoodCount = client.ReadNode("ns=2;s=Device 1/GoodCount").Value,
-                    BadCount = client.ReadNode("ns=2;s=Device 1/BadCount").Value,
-                };
-                
-                var dataString = JsonConvert.SerializeObject(data);
+            var data = new
+            {
+                // podstawowe wysylanie wiadomosci            
+                ProductionStatus = client.ReadNode($"ns=2;s={DeviceName}/ProductionStatus").Value,
+                WorkorderId = client.ReadNode($"ns=2;s={DeviceName}/WorkorderId").Value,
+                Temperature = client.ReadNode($"ns=2;s={DeviceName}/Temperature").Value,
+                GoodCount = client.ReadNode($"ns=2;s={DeviceName}/GoodCount").Value,
+                BadCount = client.ReadNode($"ns=2;s={DeviceName}/BadCount").Value,
+            };
 
-                Message eventMessage = new Message(Encoding.UTF8.GetBytes(dataString));
-                eventMessage.ContentType = MediaTypeNames.Application.Json;
-                eventMessage.ContentEncoding = "utf-8";
-                Console.WriteLine($"\t{DateTime.Now.ToLocalTime()}> Data: [{dataString}]");
+            var ProductionRate = new OpcReadNode($"ns=2;s={DeviceName}/ProductionRate");
+            var DeviceError = new OpcReadNode($"ns=2;s={DeviceName}/DeviceError");
+            int ProductionRateNode = client.ReadNode(ProductionRate).As<int>();
+            int DeviceErrorNode = client.ReadNode(DeviceError).As<int>();
 
-                await deviceClient.SendEventAsync(eventMessage);
+            await UpdateTwinData(ProductionRateNode, DeviceErrorNode);
 
-               
-            
+
+            var dataString = JsonConvert.SerializeObject(data);
+
+            Message eventMessage = new Message(Encoding.UTF8.GetBytes(dataString));
+            eventMessage.ContentType = MediaTypeNames.Application.Json;
+            eventMessage.ContentEncoding = "utf-8";
+            Console.WriteLine($"\t{DateTime.Now.ToLocalTime()}> Data: [{dataString}]");
+
+            await deviceClient.SendEventAsync(eventMessage);
+
             client.Disconnect();
-            Console.WriteLine();
         }
         #endregion
         #region Receive Message
@@ -60,13 +90,55 @@ namespace DeviceSdkDemo.Device
             receivedMessage.Dispose();
         }
 
+        private async Task UpdateTwinData(int ProductionRate, int DeviceError)
+        {
+            string DeviceErrorString = "";
+            if (DeviceError - 8 >= 0)
+            {
+                DeviceError = DeviceError - 8;
+                DeviceErrorString = DeviceErrorString + "Unknown Error ,";
+            }
+            if (DeviceError - 4 >= 0)
+            {
+                DeviceError = DeviceError - 4;
+                DeviceErrorString = DeviceErrorString + "Sensor Failure ,";
+            }
+            if (DeviceError - 2 >= 0)
+            {
+                DeviceError = DeviceError - 2;
+                DeviceErrorString = DeviceErrorString + "Power Failure ,";
+            }
+            if (DeviceError - 1 >= 0)
+            {
+                DeviceError = DeviceError - 1;
+                DeviceErrorString = DeviceErrorString + "Emergency Stop ,";
+            }
+
+            var twin = await deviceClient.GetTwinAsync();
+            var reportedProperties = new TwinCollection();
+
+            string ReportedErrorStatus = twin.Properties.Reported["ErrorStatus"];
+            int ReportedProductionRate = twin.Properties.Reported["ProductionRate"];
+
+            if (!ReportedErrorStatus.Equals(DeviceErrorString))
+            {
+                reportedProperties["ErrorStatus"] = DeviceErrorString;
+                await deviceClient.UpdateReportedPropertiesAsync(reportedProperties);
+            }
+            if (ReportedProductionRate != ProductionRate)
+            {
+                reportedProperties["ProductionRate"] = ProductionRate;
+                await deviceClient.UpdateReportedPropertiesAsync(reportedProperties);
+            }
+        }
+
         private void PrintMessages(Message receivedMessage)
         {
             string messageData = Encoding.ASCII.GetString(receivedMessage.GetBytes());
             Console.WriteLine($"\t\tReceived message: {messageData}");
 
             int propCount = 0;
-            foreach(var prop in receivedMessage.Properties)
+            foreach (var prop in receivedMessage.Properties)
             {
                 Console.WriteLine($"\t\tProperty[{propCount++} > Key={prop.Key} : Value={prop.Value}");
             }
@@ -107,7 +179,7 @@ namespace DeviceSdkDemo.Device
             reportedProperties["DateTimeLastAppLaunch"] = DateTime.Now;
 
             await deviceClient.UpdateReportedPropertiesAsync(reportedProperties);
-        
+
         }
 
         private async Task OnDesiredPropertyChanged(TwinCollection desiredProperties, object _)
@@ -129,9 +201,33 @@ namespace DeviceSdkDemo.Device
             await deviceClient.SetMethodHandlerAsync("SendMessages", SendMessagesHandler, deviceClient);
 
             await deviceClient.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertyChanged, deviceClient);
+            await deviceClient.SetMethodHandlerAsync("EmergencyStop", EmergencyStop, deviceClient);
+            await deviceClient.SetMethodHandlerAsync("ClearErrors", ResetErrors, deviceClient);
 
         }
+        /// emergency
+        private async Task<MethodResponse> EmergencyStop(MethodRequest methodRequest, object userContext)
+        {
+            var client = new OpcClient(OPCstring);
+            client.Connect();
+            await Task.Delay(1000);
+            client.CallMethod($"ns=2;s={DeviceName}", $"ns=2;s={DeviceName}/EmergencyStop");
 
-        
+            client.Disconnect();
+            Console.WriteLine("STOP!!!!!!");
+            return new MethodResponse(0);
+        }
+        /// reset errors
+        private async Task<MethodResponse> ResetErrors(MethodRequest methodRequest, object userContext)
+        {
+            var client = new OpcClient(OPCstring);
+            client.Connect();
+            await Task.Delay(1000);
+            client.CallMethod($"ns=2;s={DeviceName}", $"ns=2;s={DeviceName}/ResetErrorStatus");
+
+            client.Disconnect();
+            Console.WriteLine("Errors Reseted =)");
+            return new MethodResponse(0);
+        }
     }
 }
